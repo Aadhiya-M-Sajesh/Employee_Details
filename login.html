@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 id="heading">Login...</h1>
+  <div class="row">
+    <div class="col">
+      <form class="max-w-sm mx-auto">
+        <div id="for" class="mb-5">
+          <label id="emle" for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</labelid=for=>
+          <br>
+          <input type="email" id="email"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="name@gmail.com" required />
+        </div>
+<br>
+        <div class="mb-5">
+          <label id="pass" for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+            password</label>
+          <br>
+          <input type="password" id="password"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required />
+        </div>
+        <br>
+        <div class="flex items-start mb-5">
+          <div class="flex items-center h-5">
+            <input id="remember" type="checkbox" value=""
+              class="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+              required />
+          </div>
+          <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+        </div>
+        <button type="button" onclick="login()"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    function login() {
+      let userEmail = email.value
+      let userPassword = password.value
+      let userDetails = JSON.parse(sessionStorage.getItem("userData"))
+      console.log(userDetails)
+      if (userDetails.email == userEmail && userDetails.password == userPassword) {
+        alert("login success")
+        window.location.href='./employee.html'
+      }
+      else {
+        alert("invalid data")
+         
+      }
+    }
+  </script>
+  <style>
+    body{
+      background-color: rgba(230, 235, 244, 0.763);
+    }
+    #heading{
+       align-items: center;
+            text-align: center;
+            margin-top: 50px;
+            color: rgb(0, 36, 94);
+    }
+    .row {
+      margin-top: 100px;
+        border: 1px solid rgba(0, 0, 0, 0.148);
+        height: 350px;
+        width: 400px;
+        align-items: center;
+        margin-left: 550px;
+        background-color: rgba(249, 249, 249, 0.882);
+        color: black;
+        box-shadow: 2px 2px 4px black;
+        
+    }
+    .col{
+      align-items: center;
+      margin-left: 30px;
+      
+    }
+    /* input{
+      padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            width: 300px;
+            border: 1px solid rgba(0, 0, 0, 0.148);
+    } */
+    #emle{
+      font-size: large;
+      
+    }
+    #pass{
+      font-size: large;
+    }
+    #email{
+      padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            width: 300px;
+            border: 1px solid rgba(0, 0, 0, 0.148);
+    }
+    #password{
+       padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            width: 300px;
+            border: 1px solid rgba(0, 0, 0, 0.148);
+    }
+    button{
+       padding: 10px;
+            width: 100px;
+            margin-left: 120px;
+            margin-top: 20px;
+            border-radius: 5px;
+            background-color:rgb(0, 36, 94);
+            color: white;
+        
+    }
+    #for{
+align-items: center;
+margin-top: 30px;
+    }
+    
+    
+  
+
+
+    
+  </style>
+</body>
+
+</html>
