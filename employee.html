@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <header>
         <h1 id="heading">Welcome user</h1>
@@ -12,11 +14,12 @@
     </header>
     <h1 id="head">Add Employee Details</h1>
     <div class="row">
-        
+
         <div class="col0">
-            <img src="https://png.pngtree.com/png-vector/20240130/ourmid/pngtree-isometric-employees-managing-documents-file-folders-png-image_11572625.png" alt="">
+            <img src="https://png.pngtree.com/png-vector/20240130/ourmid/pngtree-isometric-employees-managing-documents-file-folders-png-image_11572625.png"
+                alt="">
         </div>
-        
+
         <div class="col">
             <form action="">
                 <input id="emp_id" type="text" placeholder="Employee Id">
@@ -31,11 +34,11 @@
                 <br>
                 <input id="emp_sal" type="text" placeholder="Employee Salary">
                 <br>
-                <button onclick="employee_details()" >Add Employee</button>
+                <button onclick="employee_details()">Add Employee</button>
             </form>
         </div>
         <div class="col1">
-            
+
             <form action="">
                 <input id="search" type="text" placeholder="Search Id">
                 <br>
@@ -45,64 +48,72 @@
         </div>
     </div>
     <script>
-        function employee_details(){
-           let emp_details = {
-            id :emp_id.value,
-            name :emp_name.value,
-            adress:emp_adr.value,
-            designation:emp_desg.value,
-            experiance:emp_exp.value,
-            salary:emp_sal.value
-           }
-           if(emp_details.id=="" || emp_details.name=="" || emp_details.adress=="" || emp_details.designation=="" ||emp_details.experiance=="" || emp_details.salary==""){
-            alert("please fill the form")
+        function employee_details() {
+            let emp_details = {
+                id: emp_id.value,
+                name: emp_name.value,
+                adress: emp_adr.value,
+                designation: emp_desg.value,
+                experiance: emp_exp.value,
+                salary: emp_sal.value
+            }
+            if (emp_details.id == "" || emp_details.name == "" || emp_details.adress == "" || emp_details.designation == "" || emp_details.experiance == "" || emp_details.salary == "") {
+                alert("please fill the form");
+                return;
+            }
+            if (localStorage.getItem(emp_details.id)) {
+                alert("Employee already exist")
+
+            }
+            else {
+                localStorage.setItem(emp_details.id, JSON.stringify(emp_details));
+                alert("employee added successfully");
+                document.getElementById("form").reset();
+            }
         }
-        else{
-            sessionStorage.setItem("userData",JSON.stringify(emp_details))
-            alert("Employee details added successfull")
+        function search_employee() {
+            const userId = document.getElementById("search").value;//input box value
+            const emp_details = JSON.parse(localStorage.getItem(userId))
             
+            if (emp_details) {
+                // searchh.innerHTML = `<p>Id : ${emp_details.id}</p><p>Name : ${emp_details.name}</p><p>Adress : ${emp_details.adress}</p>
+                //               <p>Experiance : ${emp_details.experiance}</p><p>Salary : ${emp_details.salary}</p>`
+            document.getElementById("searchh").innerHTML =`
+            <p>Id : ${emp_details.id}</p><p>Name : ${emp_details.name}</p><p>Adress : ${emp_details.adress}</p>
+                               <p>Experiance : ${emp_details.experiance}</p><p>Salary : ${emp_details.salary}</p>`
+
+            }
+            else {
+                document.getElementById("searchh").innerHTML=`<p>Employee not found</p>`
+
+            }
         }
 
-        }
-        function search_employee(){
-            let userId=search.value
-            let emp_details = JSON.parse(sessionStorage.getItem("userData"))
-      console.log(emp_details)
-      if (emp_details.id == userId) {
-        searchh.innerHTML=`<p>Id : ${emp_details.id}</p><p>Name : ${emp_details.name}</p><p>Adress : ${emp_details.adress}</p>
-                              <p>Experiance : ${emp_details.experiance}</p><p>Salary : ${emp_details.salary}</p>`
-                          
-                              
-      }
-      else {
-        alert("No Employee found")
-         
-      }
-        }
-
-        function logout(){
+        function logout() {
             sessionStorage.clear();
             alert("Logout successfull")
         }
     </script>
     <style>
-        *{
+        * {
             padding: 0px;
             border: 0px;
             margin: 0px;
         }
-        header{
+
+        header {
             height: 50px;
             width: 99.9%;
             display: flex;
             justify-content: space-between;
             background-color: rgb(227, 239, 238);
             border: 1px solid rgba(0, 0, 0, 0.148);
-    
-            
+
+
 
         }
-        #logout{
+
+        #logout {
             background-color: red;
             color: white;
             margin: 5px;
@@ -110,31 +121,36 @@
             text-align: center;
             border-radius: 10px;
         }
-        #heading{
-         color: rgb(0, 36, 94);
-         margin-left: 10px;
-         text-align: center;
-         font-family:Georgia, 'Times New Roman', Times, serif;
+
+        #heading {
+            color: rgb(0, 36, 94);
+            margin-left: 10px;
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', Times, serif;
         }
-        #head{
+
+        #head {
             align-items: center;
             text-align: center;
             margin-top: 5px;
             color: rgb(0, 36, 94);
         }
-        .col0{
+
+        .col0 {
             width: 400px;
             height: 300px;
             margin-left: 20px;
             margin-top: 80px;
         }
-        .row{
+
+        .row {
             display: flex;
             background-color: rgba(200, 217, 248, 0.508);
             height: 500px;
             margin-top: 100px;
         }
-        .col{
+
+        .col {
             background-color: rgb(255, 255, 255);
             padding: 50px;
             margin: 20px;
@@ -145,30 +161,34 @@
             border: 1px solid rgba(0, 0, 0, 0.148);
             box-shadow: 2px 2px 4px black;
             height: 350px;
-            
+
         }
-        input{
+
+        input {
             padding: 10px;
             margin-top: 10px;
             border-radius: 5px;
             width: 250px;
             border: 1px solid rgba(0, 0, 0, 0.148);
-            
+
         }
-        button{
+
+        button {
             padding: 10px;
             width: 270px;
             margin-left: 2px;
             margin-top: 20px;
             border-radius: 5px;
-            background-color:rgb(0, 36, 94);
+            background-color: rgb(0, 36, 94);
             color: white;
         }
-        body{
+
+        body {
             background-color: rgba(135, 178, 251, 0.508);
         }
-        .col1{
-           background-color: rgb(255, 255, 255);
+
+        .col1 {
+            background-color: rgb(255, 255, 255);
             padding: 50px;
             margin: 20px;
             align-items: center;
@@ -181,24 +201,27 @@
 
 
         }
-        #search{
-             padding: 10px;
+
+        #search {
+            padding: 10px;
             margin-top: 10px;
             border-radius: 5px;
             width: 200px;
             border: 1px solid rgba(0, 0, 0, 0.148)
         }
-        #search_button{
+
+        #search_button {
             width: 220px;
             background-color: rgb(0, 36, 94);
         }
-        #searchh{
+
+        #searchh {
             align-items: center;
             margin-left: 50px;
             margin-top: 10px;
             color: green;
         }
-
     </style>
 </body>
+
 </html>
